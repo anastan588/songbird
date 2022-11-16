@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SongBird</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>SongBird</title>
+  </head>
+  <body class="body">
+    <header class="header">
+      <div class="h1_container">
+        <a class="logo_link" href="index.html">
+          <h1 class="h1_text">Birds Quiz</h1>
+        </a>
+      </div>
+      <div class="lang_container">
+        <p class="language_text">Language</p>
+        <img class="language_choice" src="./assets/icons/britain.svg" />
+      </div>
+    </header>
+    <main class="main">
+      <section class="description">
+        <p class="description_text">
+          Quiz game in which you need to khow the birds by their voice
+        </p>
+      </section>
+      <section class="button_container">
+        <button
+          class="button play"
+          onclick="window.location.href = 'quiz.html';"
+        >
+          Play
+        </button>
+        <button
+          class="button gallery"
+          onclick="window.location.href = 'gallery.html';"
+        >
+          Gallery
+        </button>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer_container">
+        <a class="github_link" href="https://github.com/anastan588">
+          <img class="github_image" src="./assets/icons/github.svg" alt="git" />
+          <p class="footer_year">2022</p>
+        </a>
+        <a class="rsschool_link" href="https://rs.school/js/"
+          ><img
+            class="rsschool_image"
+            src="./assets/icons/rsschool.svg"
+            alt="rs"
+          />
+        </a>
+      </div>
+    </footer>
+    <script src="index.js"></script>
+  </body>
 </html>
