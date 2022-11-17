@@ -29,46 +29,43 @@ let pageTitle = document.querySelector(".h1_text");
 let playButton = document.querySelector(".play");
 let galleryButton = document.querySelector(".gallery");
 let description = document.querySelector(".description");
-let lang = document.querySelector(".language_choice");
+let langEng = document.querySelector(".eng");
+let langRus = document.querySelector(".rus");
 let languageText = document.querySelector(".language_text");
 let descriptionText = document.querySelector(".description_text");
 
 function setLang() {
-  if (localStorage.getItem("birdsLang") === "RU") {
-    lang.setAttribute("src", "./assets/icons/russia.svg");
+  if (localStorage.getItem("birdsLang") === "RUS") {
+    translate();
   }
   if (localStorage.getItem("birdsLang") === "ENG") {
-    lang.setAttribute("src", "./assets/icons/britain.svg");
   }
   if (localStorage.getItem("birdsLang") === null) {
     localStorage.setItem("birdsLang", "ENG");
-
-    translate();
   }
 }
 setLang();
 
 function translate() {
-  if (localStorage.getItem("birdsLang") === "RU") {
+  if (localStorage.getItem("birdsLang") === "RUS") {
     pageTitle = "Викторина про птиц";
     languageText.innerHTML = "Язык";
     descriptionText.innerHTML =
-      "Игра, в которой вам необходимо угадать птиц по их голосам.";
+      "Вам необходимо угадать птиц по их голосам.";
     playButton.innerHTML = "Играть";
     galleryButton.innerHTML = "Галерея";
   }
 }
 
-function changeLang() {
-  if (lang.src === "./assets/icons/russia.svg") {
-    lang.setAttribute("src", "./assets/icons/britain.svg");
-    localStorage.setItem("birdsLang", "ENG");
-    location.reload();
-  } else {
-    lang.setAttribute("src", "./assets/icons/russia.svg");
-    localStorage.setItem("birdsLang", "RUS");
-    location.reload();
-  }
+function changeLangRus() {
+  localStorage.setItem("birdsLang", "RUS");
+  location.reload();
 }
 
-lang.addEventListener("click", changeLang);
+function changeLangEng() {
+  localStorage.setItem("birdsLang", "ENG");
+  location.reload();
+}
+
+langEng.addEventListener("click", changeLangEng);
+langRus.addEventListener("click", changeLangRus);

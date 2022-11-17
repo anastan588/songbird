@@ -1,20 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="quiz.css" type="text/css" />
-  <title>SongBird</title>
-</head>
-<body class="body">
-  <header class="header">
-    <div class="h1_container">
-      <a class="logo_link" href="index.html">
-        <h1 class="h1_text">Birds Quiz</h1>
-      </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="quiz.css" type="text/css" />
+    <title>SongBird</title>
+  </head>
+  <body class="body">
+    <div class="wrapper">
+      <header class="header">
+        <div class="h1_container">
+          <a class="logo_link" href="index.html">
+            <h1 class="h1_text">Birds Quiz</h1>
+          </a>
+        </div>
+        <div class="score">
+          <p class="score_text">Score:</p>
+          <p class="score_digit">0</p>
+        </div>
+      </header>
+      <main class="main">
+        <section class="game">
+          <div class="game_stages">
+            <div class="stage warm-up">
+              <p class="stage_text stage_warm-up">Warm-up</p>
+            </div>
+            <div class="stage passerines">
+              <p class="stage_text stage_passerines">Passerines</p>
+            </div>
+            <div class="stage forest">
+              <p class="stage_text stage_forest">Forest birds</p>
+            </div>
+            <div class="stage songbirds">
+              <p class="stage_text stage_songbirds">Songbirds</p>
+            </div>
+            <div class="stage predator">
+              <p class="stage_text stage_predator">Predator birds</p>
+            </div>
+            <div class="stage sea">
+              <p class="stage_text stage_sea">Sea birds</p>
+            </div>
+          </div>
+          <div class="bird">
+            <div class="image_wrap">
+              <img
+                class="bird_image"
+                src="./assets/icons/bird.06a46938.jpg"
+                alt="bird"
+              />
+            </div>
+            <div class="bird_toknow">
+              <p class="bird_name">* * * * * *</p>
+              <div class="audio">
+                <span class="audio_play audio_play_predict"></span>
+                <div class="timeline timeline_predict">
+                  <input
+                    type="range"
+                    class="range_timeline range_timeline_predict"
+                    min="0"
+                    max="100"
+                    value="0"
+                    name="range"
+                    step="1"
+                  />
+                  <span class="current_time current_time_predict">00:00</span>
+                  <span class="max_time max_time_predict">00:00</span>
+                </div>
+                <div class="volume_wrap volume_wrap_predict">
+                  <span class="volume volume_predict"></span>
+                  <div class="volume_bar_wrap volume_bar_wrap_predict">
+                    <div class="volume_bar_field volume_bar_field_predict">
+                      <input
+                        type="range"
+                        class="volume_bar volume_bar_predict"
+                        min="0"
+                        max="100"
+                        value="50"
+                        name="range"
+                        step="1"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="select">
+            <div class="select_block">
+              <ul class="select_list">
+                <li class="item item_1">
+                  <div class="item_dot"></div>
+                  <p class="item_text">Raven</p>
+                </li>
+                <li class="item item_2">
+                  <div class="item_dot"></div>
+                  <p class="item_text">Shadoof</p>
+                </li>
+                <li class="item item_3">
+                  <div class="item_dot"></div>
+                  <p class="item_text">Swallow</p>
+                </li>
+                <li class="item item_4">
+                  <div class="item_dot"></div>
+                  <p class="item_text">Nightjar</p>
+                </li>
+                <li class="item item_5">
+                  <div class="item_dot"></div>
+                  <p class="item_text">Cuckoo</p>
+                </li>
+                <li class="item item_6">
+                  <span class="item_dot"></span>
+                  <p class="item_text">Tit</p>
+                </li>
+              </ul>
+            </div>
+            <div class="start_info">
+              <p class="info_text">
+                Listen to the bird's voice and choose the right bird in the
+                list.
+              </p>
+            </div>
+          </div>
+          <div class="next">
+            <p class="next_text">Next</p>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="footer_container">
+          <a class="github_link" href="https://github.com/anastan588">
+            <img
+              class="github_image"
+              src="./assets/icons/github.svg"
+              alt="git"
+            />
+            <p class="footer_year">2022</p>
+          </a>
+          <a class="rsschool_link" href="https://rs.school/js/"
+            ><img
+              class="rsschool_image"
+              src="./assets/icons/rsschool.svg"
+              alt="rs"
+            />
+          </a>
+        </div>
+      </footer>
     </div>
-  </header>
-  <script src="quiz.js"></script>
-</body>
+
+    <script src="quiz.js"></script>
+  </body>
 </html>
