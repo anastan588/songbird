@@ -21,3 +21,15 @@ async function setBg() {
     bodyOfBirds.style.backgroundImage = `url(${img.src})`;
   };
 }
+
+window.addEventListener("load", setBg);
+window.addEventListener("click", setBg);
+
+
+/*Game*/
+
+let score = 0;
+let stage = 0;
+let maxScore = 5;
+let option = document.querySelectorAll('.option');
+let optionText = document.querySelectorAll('.option_text');

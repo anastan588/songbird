@@ -133,10 +133,6 @@ html {
   position: relative;
 }
 
-.page_link {
-  text-decoration: none;
-}
-
 .main {
   max-width: 1300px;
   width: 100%;
@@ -170,7 +166,6 @@ html {
 .language_text:hover {
   transform: scale(1.05);
   opacity: 1;
-
 }
 
 .language_choice {
@@ -288,11 +283,6 @@ html {
 }
 
 .footer_rsschool {
-  display: inline-block;
-  background-image: url("assets/icons/rsschool.svg");
-  background-repeat: no-repeat;
-
-  background-size: cover;
   opacity: 0.5;
   transition: 0.5s;
 }
@@ -393,13 +383,11 @@ html {
   }
 }
 
-
-
 @media screen and (max-width: 400px) {
   .h1_text {
     font-size: 95%;
   }
-  
+
   .language_text {
     color: white;
     font-size: 45%;
@@ -425,13 +413,11 @@ html {
   }
 
   .github_link {
-   
     gap: 20px;
     height: 40px;
     width: 40px;
-    
   }
-  
+
   .github_image {
     width: 40px;
     height: 40px;
@@ -440,7 +426,7 @@ html {
     height: 45px;
     width: 120px;
   }
-  
+
   .footer_link {
     text-decoration: none;
     display: flex;
@@ -448,21 +434,19 @@ html {
     transition: 0.5s;
     opacity: 0.5;
   }
-  
+
   .footer_rsschool {
     display: inline-block;
     background-image: url("assets/icons/rsschool.svg");
     background-repeat: no-repeat;
-  
+
     background-size: cover;
     opacity: 0.5;
     transition: 0.5s;
   }
-  
+
   .github_link:hover,
   .rsschool_link:hover {
     transform: scale(1.05);
   }
-
-
 }
