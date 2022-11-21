@@ -169,16 +169,16 @@ html {
 }
 
 .language_choice {
-  height: 30px;
+  height: 45px;
   width: 45px;
   cursor: pointer;
   opacity: 1;
   z-index: 2;
 }
 
-/*.language_choice_ru {
-  background-image: url("assets/icons/russia.svg");
-}*/
+.language_choice:hover {
+  transform: scale(1.05);
+}
 
 .description {
   position: relative;
@@ -208,10 +208,10 @@ html {
   cursor: pointer;
   color: white;
   font-size: 350%;
-  font-family: "Reaver-bold", sans-serif;
+  font-family: "Arial", sans-serif;
   text-transform: uppercase;
-  border: 3px solid white;
-  border-radius: 15px;
+  border: 1px solid white;
+  border-radius: 10px;
   padding: 1.5% 5%;
   transition: 0.5s;
   opacity: 0.9;
@@ -314,7 +314,7 @@ html {
   }
 
   .language_choice {
-    height: 15px;
+    height: 25px;
     width: 25px;
   }
 
@@ -338,7 +338,7 @@ html {
   }
 
   .language_choice {
-    height: 15px;
+    height: 25px;
     width: 25px;
   }
 
@@ -364,7 +364,7 @@ html {
   }
 
   .language_choice {
-    height: 15px;
+    height: 25px;
     width: 25px;
   }
 
@@ -394,7 +394,7 @@ html {
   }
 
   .language_choice {
-    height: 15px;
+    height: 25px;
     width: 25px;
   }
 
