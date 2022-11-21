@@ -771,65 +771,25 @@ async function setBg() {
 }
 
 window.addEventListener("load", setBg);
-/*window.addEventListener("click", setBg);*/
 
-/*Game*/
-
-let lang = localStorage.getItem("birdslang");
-
-let item = document.querySelectorAll(".item");
-let itemText = document.querySelectorAll(".item_text");
-/*let text = document.querySelector(".item_text");*/
-let dot = document.querySelectorAll(".item_dot");
-let infoStart = document.querySelector(".info_text_start");
 let stages = document.querySelectorAll(".stage");
 let stageText = document.querySelectorAll(".stage_text");
 
-let infoBirdImage = document.querySelector(".bird_image_info");
-let infoBirdName = document.querySelector(".bird_name_info");
-let infoBirdSpecies = document.querySelector(".bird_species_info");
-let infoBirdDescription = document.querySelector(".bird_description_info");
-let infoPLayWrap = document.querySelector(".start_info");
-let infoWrap = document.querySelector(".start_info_bird");
-let infoTextStart = document.querySelector(".info_text_start");
+let infoBirdImage = document.querySelectorAll(".bird_image_info");
+let infoBirdName = document.querySelectorAll(".bird_name_info");
+let infoBirdSpecies = document.querySelectorAll(".bird_species_info");
+let infoBirdDescription = document.querySelectorAll(".bird_description_info");
+let infoWrap = document.querySelectorAll(".start_info_bird");
+let infoTextStart = document.querySelectorAll(".info_text_start");
+let birds = document.querySelector(".birds");
 
-let birdImage = document.querySelector(".bird_image");
-let birdName = document.querySelector(".bird_name");
-let buttonNext = document.querySelector(".next");
-let buttonNextText = document.querySelector(".next_text");
-let scoreText = document.querySelector(".score_digit");
-let scoreTitle = document.querySelector(".score_text");
-
-let endPopup = document.querySelector(".end_popup");
-let popupText = document.querySelector(".popup_text");
-let gameBlock = document.querySelector(".game");
-let scoreBlock = document.querySelector(".score");
-let popupButton = document.querySelector(".popup_button");
-let popupHome = document.querySelector(".popup_home");
-
-let audioPlay = document.querySelector(".audio_play_predict");
 let audioPlayInfo = document.querySelector(".audio_play_info");
-let maxTime = document.querySelector(".max_time_predict");
 let maxTimeInfo = document.querySelector(".max_time_info");
-let rangeTimeline = document.querySelector(".range_timeline_predict");
 let rangeTimelineInfo = document.querySelector(".range_timeline_info");
-let currentTimePredict = document.querySelector(".current_time_predict");
 let currentTimeInfo = document.querySelector(".current_time_info");
-
-let volume = document.querySelector(".volume_predict");
-let volumeBarWrap = document.querySelector(".volume_bar_wrap_predict");
-let volumeBar = document.querySelector(".volume_bar_predict");
 let volumeInfo = document.querySelector(".volume_info");
 let volumeBarWrapInfo = document.querySelector(".volume_bar_wrap_info");
 let volumeBarInfo = document.querySelector(".volume_bar_info");
-
-let score = 0;
-let stage = 0;
-let maxScore = 5;
-let voice = new Audio();
-let voiceInfo = new Audio();
-let rightAnswer = new Audio("./assets/audio/correct.mp3");
-let wrongAnswer = new Audio("./assets/audio/wrong.mp3");
 
 let stagesRu = [
   "Разминка",
@@ -840,236 +800,99 @@ let stagesRu = [
   "Морские птицы",
 ];
 
+let stagesEng = [
+  "Warm-up",
+  "Passerines",
+  "Forest birds",
+  "Songbirds",
+  "Predator birds",
+  "Sea birds",
+];
+
 if (localStorage.getItem("birdsLang") === "RUS") {
   for (let i = 0; i < stageText.length; i++) {
     stageText[i].innerHTML = stagesRu[i];
   }
-  infoTextStart.innerHTML =
-    "Послушайте голос птицы. Определите кому он принадлежит.";
-  buttonNextText.innerHTML = "Следующий уровень";
-  scoreTitle.innerHTML = "Cчет:";
-  popupButton.innerHTML = "Главная страница";
-  popupHome.innerHTML = "Играть заново";
 }
 
-function randomRight() {
-  return Math.floor(Math.random() * 6);
-}
-
-function placeAudioPredict() {
-  voice.onloadedmetadata = function () {
-    let time = voice.duration.toString();
-    time = time.split(".")[0];
-    maxTime.textContent = "00:" + ("0" + time).slice(-2);
-  };
-}
-
-function randomPlace() {
-  let arr = [];
-  while (arr.length < 6) {
-    let num = Math.floor(Math.random() * 6);
-    if (arr.indexOf(num) === -1) {
-      arr.push(num);
-    }
-  }
-  return arr;
-}
-
+let stage;
+let voiceInfo = new Audio();
 let currStage;
 let currRight;
 
-function game() {
+function gallery() {
+  birds.classList.add("birds_active");
+  stages = this.classList.add("stage_active");
+
+  console.log(this);
+  if (
+    this.firstElementChild.innerHTML === "Разминка" ||
+    this.firstElementChild.innerHTML === "Warm-up"
+  ) {
+    stage = 0;
+  } else if (
+    this.firstElementChild.innerHTML === "Воробьиные" ||
+    this.firstElementChild.innerHTML === "Passerines"
+  ) {
+    stage = 1;
+  } else if (
+    this.firstElementChild.innerHTML === "Лесные птицы" ||
+    this.firstElementChild.innerHTML === "Forest birds"
+  ) {
+    stage = 2;
+  } else if (
+    this.firstElementChild.innerHTML === "Певчие птицы" ||
+    this.firstElementChild.innerHTML === "Songbirds"
+  ) {
+    stage = 3;
+  } else if (
+    this.firstElementChild.innerHTML === "Хищные птицы" ||
+    this.firstElementChild.innerHTML === "Predator birds"
+  ) {
+    stage = 4;
+  } else if (
+    this.firstElementChild.innerHTML === "Морские птицы" ||
+    this.firstElementChild.innerHTML === "Sea birds"
+  ) {
+    stage = 5;
+  }
+
+  console.log(stage);
   if (localStorage.getItem("birdsLang") === "ENG") {
     currStage = birdsDataEn[stage];
-  } else {
+  }
+  if (localStorage.getItem("birdsLang") === "RUS") {
     currStage = birdsData[stage];
   }
+  console.log(currStage);
 
-  currRight = currStage[randomRight()];
-  stages[stage].classList.add("stage_active");
-  infoStart.classList.add("info_text_active");
-  voice.src = currRight.audio;
-  placeAudioPredict();
-  maxScore = 5;
-
-  let arr = randomPlace();
-  for (let i = 0; i < itemText.length; i++) {
-    itemText[arr[i]].textContent = currStage[i].name;
-  }
-}
-
-game();
-
-function showInfo() {
-  infoWrap.classList.add("start_info_bird_active");
-  infoPLayWrap.classList.add("start_info_nonactive");
-  let text = this.querySelector(".item_text");
+  
+  console.log(infoBirdImage);
+  
+  console.log(voiceInfo);
 
   for (let i = 0; i < currStage.length; i++) {
-    if (text.innerHTML === currStage[i].name) {
-      infoBirdImage.src = currStage[i].image;
-      voiceInfo.src = currStage[i].audio;
-      infoBirdName.innerHTML = currStage[i].name;
-      infoBirdSpecies.innerHTML = currStage[i].species;
-      infoBirdDescription.innerHTML = currStage[i].description;
-
-      if (lang === "ENG") {
-        infoText.textContent = currStage[i].description;
-      } else {
-        /* infoText.textContent = currStage[i].desRU;*/
-      }
-      pauseVoiceInfo();
-      placeAudioInfo();
-    }
+    infoBirdImage[i].src = currStage[i].image;
+    voiceInfo.src = currStage[i].audio;
+    infoBirdName[i].innerHTML = currStage[i].name;
+    infoBirdSpecies[i].innerHTML = currStage[i].species;
+    infoBirdDescription[i].innerHTML = currStage[i].description;
+    pauseVoiceInfo();
+    placeAudioInfo();
   }
+  stages.forEach((x) => {
+    x.addEventListener("click", removegallery());
+  });
 }
 
-item.forEach((option) => {
-  option.addEventListener("click", showInfo);
-  option.addEventListener("click", showRight);
+function removegallery() {
+  stages = this.classList.remove("stage_active");
+  console.log(this);
+}
+
+stages.forEach((x) => {
+  x.addEventListener("click", gallery);
 });
-
-function showRight() {
-  let text = this.querySelector(".item_text");
-  let dot = this.querySelector(".item_dot");
-
-  switch (text.innerHTML) {
-    case currRight.name:
-      pauseVoice();
-      rightAnswer.muted = false;
-      rightAnswer.currentTime = 0;
-      rightAnswer.play();
-      birdImage.src = currRight.image;
-      birdName.innerHTML = currRight.name;
-      dot.classList.add("dot_right");
-      buttonNext.classList.add("next_active");
-      score += maxScore;
-      scoreText.innerHTML = score;
-      if (stage < 5) {
-        stage++;
-      }
-      if (
-        buttonNextText.innerHTML === "Finish" ||
-        buttonNextText.innerHTML === "Конец игры"
-      ) {
-        buttonNext.addEventListener("click", end);
-      } else {
-        buttonNext.addEventListener("click", nextStage);
-      }
-      break;
-    default:
-      wrongAnswer.muted = false;
-      wrongAnswer.currentTime = 0;
-      wrongAnswer.play();
-      dot.classList.add("dot_wrong");
-      maxScore--;
-  }
-}
-
-/* if (text.innerHTML === currRight.name) {
-    pauseVoice();
-    rightAnswer.muted = false;
-    rightAnswer.currentTime = 0;
-    rightAnswer.play();
-    birdImage.src = currRight.image;
-    birdName.innerHTML = currRight.name;
-    dot.classList.add("dot_right");
-    buttonNext.classList.add("next_active");
-    score += maxScore;
-
-    scoreText.innerHTML = score;
-      item.forEach((option) => {
-      option.removeEventListener("click", showRight);
-    });
-
-    if (stage < 5) {
-      stage++;
-    }
-
-    if (
-      buttonNextText.innerHTML === "Finish" ||
-      buttonNextText.innerHTML === "Конец"
-    ) {
-      buttonNext.addEventListener("click", end);
-    } else {
-      buttonNext.addEventListener("click", nextStage);
-    }
-return;
-
-  } else {
-    wrongAnswer.muted = false;
-    wrongAnswer.currentTime = 0;
-    wrongAnswer.play();
-    dot.classList.add("dot_wrong");
-    maxScore--;
-    this.removeEventListener("click", showRight);
-  }
-}*/
-
-function nextStage() {
-  /*let dot = document.querySelector(".item_dot");*/
-
-  pauseVoice();
-  pauseVoiceInfo();
-  infoWrap.classList.remove("start_info_bird_active");
-  infoPLayWrap.classList.remove("start_info_nonactive");
-  buttonNext.classList.remove("next_active");
-  buttonNext.removeEventListener("click", nextStage);
-  birdImage.src = "./assets/icons/bird.06a46938.jpg";
-  birdName.innerHTML = "* * * * * *";
-  if (stage === 5) {
-    buttonNextText.innerHTML = "Finish";
-    if (localStorage.getItem("birdsLang") === "RU") {
-      buttonNextText.innerHTML = "Финиш";
-    }
-  }
-
-  for (let i = 0; i < item.length; i++) {
-    stages[i].classList.remove("stage_active");
-
-    dot[i].classList.remove("dot_right");
-
-    dot[i].classList.remove("dot_wrong");
-  }
-  stages[stage].classList.add("stage_active");
-  game();
-}
-
-function end() {
-  endPopup.classList.add("active");
-  gameBlock.classList.add("none_active");
-  scoreBlock.classList.add("none_active");
-  console.log(typeof score);
-  if (localStorage.getItem("birdsLang") === "ENG") {
-    if (score === 30) {
-      popupText.innerHTML =
-        "Good game, well played! You  received the maximum score!";
-    } else {
-      popupText.innerHTML =
-        "You score is " + score + "/30 points. You can try to play again.";
-    }
-  } else {
-    if (score === 30) {
-      popupText.innerHTML =
-        "Хорошая игра! Вы набрали максимальное количество баллов. Вы очень хороши в этом деле!";
-    } else {
-      popupText.innerHTML =
-        "Ваш балл " + score + "/30 . Можете попробовать сыграть еще раз.";
-    }
-  }
-}
-
-audioPlay.addEventListener("click", playAudio);
-audioPlayInfo.addEventListener("click", playAudioInfo);
-
-function playAudio() {
-  let isPlaying = audioPlay.classList.contains("audio_pause");
-  if (!isPlaying) {
-    playVoice();
-  } else {
-    pauseVoice();
-  }
-}
 
 function playAudioInfo() {
   let isPlaying = audioPlayInfo.classList.contains("audio_pause");
@@ -1080,6 +903,8 @@ function playAudioInfo() {
   }
 }
 
+audioPlayInfo.addEventListener("click", playAudioInfo);
+
 function playVoice() {
   audioPlay.classList.add("audio_pause");
   voice.play();
@@ -1088,11 +913,6 @@ function playVoice() {
 function playVoiceInfo() {
   audioPlayInfo.classList.add("audio_pause");
   voiceInfo.play();
-}
-
-function pauseVoice() {
-  audioPlay.classList.remove("audio_pause");
-  voice.pause();
 }
 
 function pauseVoiceInfo() {
@@ -1116,17 +936,11 @@ function placeAudioInfo() {
   };
 }
 
-voice.addEventListener("ended", () => {
-  audioPlay.classList.remove("audio_pause");
-  currentTimePredict.textContent = "00:00";
-});
-
 voiceInfo.addEventListener("ended", () => {
   audioPlayInfo.classList.remove("audio_pause");
   currentTimeInfo.textContent = "00:00";
 });
 
-voice.addEventListener("timeupdate", updateBar);
 voiceInfo.addEventListener("timeupdate", updateBarInfo);
 
 function updateBar() {
@@ -1147,7 +961,6 @@ function updateBarInfo() {
   currentTimeInfo.textContent = "00:" + ("0" + time).slice(-2);
 }
 
-rangeTimeline.addEventListener("input", setBar);
 rangeTimelineInfo.addEventListener("input", setBarInfo);
 
 function setBar() {
@@ -1158,9 +971,6 @@ function setBarInfo() {
   voiceInfo.currentTime = (this.value * voiceInfo.duration) / 100;
 }
 
-volume.addEventListener("mouseover", showBar);
-volume.addEventListener("mouseout", hideBar);
-
 function showBar() {
   volumeBarWrap.classList.add("active");
 }
@@ -1168,11 +978,6 @@ function showBar() {
 function hideBar() {
   volumeBarWrap.classList.remove("active");
 }
-
-volumeBarWrap.addEventListener("mouseover", showBar);
-volumeBarWrap.addEventListener("mouseout", hideBar);
-
-volume.addEventListener("click", volumeOff);
 
 let currVolume = 0;
 
@@ -1191,8 +996,6 @@ function volumeOff() {
     changeVolume();
   }
 }
-
-volumeBar.addEventListener("input", changeVolume);
 
 function changeVolume() {
   voice.volume = volumeBar.value / 100;

@@ -91,39 +91,104 @@
               <ul class="select_list">
                 <li class="item item_1">
                   <div class="item_dot"></div>
-                  <p class="item_text">Raven</p>
+                  <p class="item_text">1</p>
                 </li>
                 <li class="item item_2">
                   <div class="item_dot"></div>
-                  <p class="item_text">Shadoof</p>
+                  <p class="item_text">2</p>
                 </li>
                 <li class="item item_3">
                   <div class="item_dot"></div>
-                  <p class="item_text">Swallow</p>
+                  <p class="item_text">3</p>
                 </li>
                 <li class="item item_4">
                   <div class="item_dot"></div>
-                  <p class="item_text">Nightjar</p>
+                  <p class="item_text">4</p>
                 </li>
                 <li class="item item_5">
                   <div class="item_dot"></div>
-                  <p class="item_text">Cuckoo</p>
+                  <p class="item_text">5</p>
                 </li>
                 <li class="item item_6">
-                  <span class="item_dot"></span>
-                  <p class="item_text">Tit</p>
+                  <div class="item_dot"></div>
+                  <p class="item_text">6</p>
                 </li>
               </ul>
             </div>
             <div class="start_info">
-              <p class="info_text">
+              <p class="info_text_start">
                 Listen to the bird's voice and choose the right bird in the
                 list.
               </p>
             </div>
+            <div class="start_info_bird">
+              <div class="info_text">
+                <div class="image_wrap_info">
+                  <img
+                    class="bird_image_info"
+                    src="./assets/icons/bird.06a46938.jpg"
+                    alt="bird"
+                  />
+                </div>
+                <div class="bird_toknow_info">
+                  <p class="bird_name_info">* * * * * *</p>
+                  <p class="bird_species_info">* * * * * *</p>
+                  <div class="info_audio">
+                    <span class="audio_play audio_play_info"></span>
+                    <div class="timeline timeline">
+                      <input
+                        type="range"
+                        class="range_timeline range_timeline_info"
+                        min="0"
+                        max="100"
+                        value="0"
+                        name="range"
+                        step="1"
+                      />
+                      <span class="current_time current_time_info">00:00</span>
+                      <span class="max_time max_time_info">00:00</span>
+                    </div>
+                    <div class="volume_wrap volume_wrap_info">
+                      <span class="volume volume_info"></span>
+                      <div class="volume_bar_wrap volume_bar_wrap_info">
+                        <div class="volume_bar_field volume_bar_field_info">
+                          <input
+                            type="range"
+                            class="volume_bar volume_bar_info"
+                            min="0"
+                            max="100"
+                            value="50"
+                            name="range"
+                            step="1"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="bird_description_info">* * * * * *</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="next">
             <p class="next_text">Next</p>
+          </div>
+        </section>
+        <section class="end_popup">
+          <div class="popup">
+            <p class="popup_text"></p>
+            <button
+              class="popup_button"
+              onclick="window.location.href = 'quiz.html';"
+            >
+              Play again
+            </button>
+            <button
+              class="popup_button popup_home"
+              onclick="window.location.href = 'index.html';"
+            >
+              Start page
+            </button>
           </div>
         </section>
       </main>
@@ -146,8 +211,6 @@
           </a>
         </div>
       </footer>
-    </div>
-
     <script src="quiz.js"></script>
   </body>
 </html>
