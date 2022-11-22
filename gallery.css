@@ -97,7 +97,7 @@ h6 {
 /*--------------------*/
 
 html {
-  height: 100vh;
+  height: 100%;
 }
 
 .wrapper {
@@ -108,6 +108,7 @@ html {
   align-items: center;
   min-height: 100%;
   padding: 0% 1%;
+  gap: 15px;
 }
 .header {
   max-width: 1300px;
@@ -132,7 +133,7 @@ html {
 
   opacity: 1;
   z-index: 2;
-  height: 20px;
+  height: 50px;
   gap: 5px;
 }
 
@@ -158,6 +159,7 @@ html {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  gap: 30px;
 }
 
 .game {
@@ -183,6 +185,7 @@ html {
   display: flex;
   justify-content: center;
   font-style: italic;
+  align-items: center;
 }
 
 .stage:hover {
@@ -190,6 +193,10 @@ html {
   border: 1px solid white;
   opacity: 1;
   cursor: pointer;
+}
+
+.stage_text {
+  text-align: center;
 }
 
 .stage_active {
@@ -211,6 +218,7 @@ html {
 .bird_image_info {
   width: 100%;
   height: 90%;
+  border-radius: 15px;
 }
 .start_info_bird_active {
   display: block;
@@ -494,4 +502,12 @@ html {
 .volume:hover {
   transform: scale(1.05);
 }
-/*player*/
+
+@media screen and (max-width: 800px) {
+  .game_stages {
+    flex-direction: column;
+  }
+  .h1_text {
+    font-size: 125%;
+  }
+}
