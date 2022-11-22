@@ -816,7 +816,7 @@ if (localStorage.getItem("birdsLang") === "RUS") {
 }
 
 let stage;
-let voiceInfo = new Audio();
+let voiceInfo;
 let currStage;
 let currRight;
 
@@ -866,13 +866,12 @@ function gallery() {
   }
   console.log(currStage);
 
-  
   console.log(infoBirdImage);
-  
-  console.log(voiceInfo);
 
   for (let i = 0; i < currStage.length; i++) {
     infoBirdImage[i].src = currStage[i].image;
+    voiceInfo = new Audio(currStage[i]);
+    console.log(voiceInfo);
     voiceInfo.src = currStage[i].audio;
     infoBirdName[i].innerHTML = currStage[i].name;
     infoBirdSpecies[i].innerHTML = currStage[i].species;
