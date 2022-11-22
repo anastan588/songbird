@@ -783,14 +783,6 @@ let infoWrap = document.querySelectorAll(".start_info_bird");
 let infoTextStart = document.querySelectorAll(".info_text_start");
 let birds = document.querySelector(".birds");
 
-let audioPlayInfo = document.querySelector(".audio_play_info");
-let maxTimeInfo = document.querySelector(".max_time_info");
-let rangeTimelineInfo = document.querySelector(".range_timeline_info");
-let currentTimeInfo = document.querySelector(".current_time_info");
-let volumeInfo = document.querySelector(".volume_info");
-let volumeBarWrapInfo = document.querySelector(".volume_bar_wrap_info");
-let volumeBarInfo = document.querySelector(".volume_bar_info");
-
 let stagesRu = [
   "Разминка",
   "Воробьиные",
@@ -816,13 +808,14 @@ if (localStorage.getItem("birdsLang") === "RUS") {
 }
 
 let stage;
-let voiceInfo;
+
 let currStage;
 let currRight;
+let i;
 
 function gallery() {
   birds.classList.add("birds_active");
-  stages = this.classList.add("stage_active");
+  this.classList.add("stage_active");
 
   console.log(this);
   if (
@@ -868,188 +861,21 @@ function gallery() {
 
   console.log(infoBirdImage);
 
-  for (let i = 0; i < currStage.length; i++) {
+  for (i = 0; i < currStage.length; i++) {
     infoBirdImage[i].src = currStage[i].image;
-    voiceInfo = new Audio(currStage[i]);
-    console.log(voiceInfo);
-    voiceInfo.src = currStage[i].audio;
     infoBirdName[i].innerHTML = currStage[i].name;
     infoBirdSpecies[i].innerHTML = currStage[i].species;
     infoBirdDescription[i].innerHTML = currStage[i].description;
-    pauseVoiceInfo();
-    placeAudioInfo();
   }
-  stages.forEach((x) => {
-    x.addEventListener("click", removegallery());
-  });
-}
 
-function removegallery() {
-  stages = this.classList.remove("stage_active");
-  console.log(this);
+  this.classList.remove("stage_active");
 }
 
 stages.forEach((x) => {
   x.addEventListener("click", gallery);
 });
 
-function playAudioInfo() {
-  let isPlaying = audioPlayInfo.classList.contains("audio_pause");
-  if (!isPlaying) {
-    playVoiceInfo();
-  } else {
-    pauseVoiceInfo();
-  }
-}
-
-audioPlayInfo.addEventListener("click", playAudioInfo);
-
-function playVoice() {
-  audioPlay.classList.add("audio_pause");
-  voice.play();
-}
-
-function playVoiceInfo() {
-  audioPlayInfo.classList.add("audio_pause");
-  voiceInfo.play();
-}
-
-function pauseVoiceInfo() {
-  audioPlayInfo.classList.remove("audio_pause");
-  voiceInfo.pause();
-}
-
-function placeAudioPredict() {
-  voice.onloadedmetadata = function () {
-    let time = voice.duration.toString();
-    time = time.split(".")[0];
-    maxTime.textContent = "00:" + ("0" + time).slice(-2);
-  };
-}
-
-function placeAudioInfo() {
-  voiceInfo.onloadedmetadata = function () {
-    let time = voiceInfo.duration.toString();
-    time = time.split(".")[0];
-    maxTimeInfo.textContent = "00:" + ("0" + time).slice(-2);
-  };
-}
-
-voiceInfo.addEventListener("ended", () => {
-  audioPlayInfo.classList.remove("audio_pause");
-  currentTimeInfo.textContent = "00:00";
-});
-
-voiceInfo.addEventListener("timeupdate", updateBarInfo);
-
-function updateBar() {
-  rangeTimeline.value = (voice.currentTime / voice.duration) * 100;
-  if (voice.currentTime === 0) {
-    rangeTimeline.value = 0;
-  }
-  let time = voice.currentTime.toString().split(".")[0];
-  currentTimePredict.textContent = "00:" + ("0" + time).slice(-2);
-}
-
-function updateBarInfo() {
-  rangeTimelineInfo.value = (voiceInfo.currentTime / voiceInfo.duration) * 100;
-  if (voiceInfo.currentTime === 0) {
-    rangeTimelineInfo.value = 0;
-  }
-  let time = voiceInfo.currentTime.toString().split(".")[0];
-  currentTimeInfo.textContent = "00:" + ("0" + time).slice(-2);
-}
-
-rangeTimelineInfo.addEventListener("input", setBarInfo);
-
-function setBar() {
-  voice.currentTime = (this.value * voice.duration) / 100;
-}
-
-function setBarInfo() {
-  voiceInfo.currentTime = (this.value * voiceInfo.duration) / 100;
-}
-
-function showBar() {
-  volumeBarWrap.classList.add("active");
-}
-
-function hideBar() {
-  volumeBarWrap.classList.remove("active");
-}
-
-let currVolume = 0;
-
-function volumeOff() {
-  if (volumeBar.value == 0) {
-    if (currVolume == 0) {
-      currVolume = 50;
-    }
-    volumeBar.value = currVolume;
-    volume.classList.remove("volume_off");
-    changeVolume();
-  } else {
-    volume.classList.add("volume_off");
-    currVolume = volumeBar.value;
-    volumeBar.value = 0;
-    changeVolume();
-  }
-}
-
-function changeVolume() {
-  voice.volume = volumeBar.value / 100;
-  rightAnswer.volume = volumeBar.value / 100;
-  leftAnswer.volume = volumeBar.value / 100;
-  if (volumeBar.value == 0) {
-    volume.classList.add("volume_off");
-  } else {
-    volume.classList.remove("volume_off");
-  }
-}
-
-//-------------------------------------------------------------------------------------------------//
-
-volumeInfo.addEventListener("mouseover", showBarInfo);
-volumeInfo.addEventListener("mouseout", hideBarInfo);
-
-function showBarInfo() {
-  volumeBarWrapInfo.classList.add("active");
-}
-
-function hideBarInfo() {
-  volumeBarWrapInfo.classList.remove("active");
-}
-
-volumeBarWrapInfo.addEventListener("mouseover", showBarInfo);
-volumeBarWrapInfo.addEventListener("mouseout", hideBarInfo);
-
-volumeInfo.addEventListener("click", volumeOffInfo);
-
-let currVolumeInfo = 0;
-
-function volumeOffInfo() {
-  if (volumeBarInfo.value == 0) {
-    if (currVolumeInfo == 0) {
-      currVolumeInfo = 50;
-    }
-    volumeBarInfo.value = currVolumeInfo;
-    volumeInfo.classList.remove("volume_off");
-    changeVolumeInfo();
-  } else {
-    volumeInfo.classList.add("volume_off");
-    currVolumeInfo = volumeBarInfo.value;
-    volumeBarInfo.value = 0;
-    changeVolumeInfo();
-  }
-}
-
-volumeBarInfo.addEventListener("input", changeVolumeInfo);
-
-function changeVolumeInfo() {
-  voiceInfo.volume = volumeBarInfo.value / 100;
-  if (volumeBarInfo.value == 0) {
-    volumeInfo.classList.add("volume_off");
-  } else {
-    volumeInfo.classList.remove("volume_off");
-  }
+function removegallery() {
+  this.classList.remove("stage_active");
+  birds.classList.remove("birds_active");
 }
