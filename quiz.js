@@ -848,8 +848,8 @@ if (localStorage.getItem("birdsLang") === "RUS") {
     "Послушайте голос птицы. Определите кому он принадлежит.";
   buttonNextText.innerHTML = "Следующий уровень";
   scoreTitle.innerHTML = "Cчет:";
-  popupButton.innerHTML = "Главная страница";
-  popupHome.innerHTML = "Играть заново";
+  popupButton.innerHTML = "Играть заново";
+  popupHome.innerHTML = "Главная страница";
 }
 
 function randomRight() {
@@ -956,13 +956,18 @@ function showRight() {
       } else {
         buttonNext.addEventListener("click", nextStage);
       }
-      break;
+      item.forEach((option) => {
+        option.removeEventListener("click", showRight);
+      });
+
     default:
       wrongAnswer.muted = false;
       wrongAnswer.currentTime = 0;
       wrongAnswer.play();
       dot.classList.add("dot_wrong");
       maxScore--;
+
+      this.removeEventListener("click", showRight);
   }
 }
 
@@ -1033,6 +1038,9 @@ function nextStage() {
   }
   stages[stage].classList.add("stage_active");
   game();
+  item.forEach((option) => {
+    option.addEventListener("click", showRight);
+  });
 }
 
 function end() {
