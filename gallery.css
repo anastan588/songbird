@@ -240,6 +240,7 @@ html {
 .birds_active {
   display: block;
   display: flex;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
@@ -509,5 +510,15 @@ html {
   }
   .h1_text {
     font-size: 125%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .birds {
+    gap: 20px;
+  }
+  .bird {
+    flex-direction: column;
+    gap: 10px;
   }
 }
