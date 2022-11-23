@@ -933,7 +933,7 @@ function showRight() {
   let text = this.querySelector(".item_text");
   let dot = this.querySelector(".item_dot");
 
-  switch (text.innerHTML) {
+  /* switch (text.innerHTML) {
     case currRight.name:
       pauseVoice();
       rightAnswer.muted = false;
@@ -945,6 +945,7 @@ function showRight() {
       buttonNext.classList.add("next_active");
       score += maxScore;
       scoreText.innerHTML = score;
+
       if (stage < 5) {
         stage++;
       }
@@ -956,6 +957,7 @@ function showRight() {
       } else {
         buttonNext.addEventListener("click", nextStage);
       }
+
       item.forEach((option) => {
         option.removeEventListener("click", showRight);
       });
@@ -969,9 +971,9 @@ function showRight() {
 
       this.removeEventListener("click", showRight);
   }
-}
+}*/
 
-/* if (text.innerHTML === currRight.name) {
+  if (text.innerHTML === currRight.name) {
     pauseVoice();
     rightAnswer.muted = false;
     rightAnswer.currentTime = 0;
@@ -983,7 +985,7 @@ function showRight() {
     score += maxScore;
 
     scoreText.innerHTML = score;
-      item.forEach((option) => {
+    item.forEach((option) => {
       option.removeEventListener("click", showRight);
     });
 
@@ -993,14 +995,12 @@ function showRight() {
 
     if (
       buttonNextText.innerHTML === "Finish" ||
-      buttonNextText.innerHTML === "Конец"
+      buttonNextText.innerHTML === "Конец игры"
     ) {
       buttonNext.addEventListener("click", end);
     } else {
       buttonNext.addEventListener("click", nextStage);
     }
-return;
-
   } else {
     wrongAnswer.muted = false;
     wrongAnswer.currentTime = 0;
@@ -1009,7 +1009,7 @@ return;
     maxScore--;
     this.removeEventListener("click", showRight);
   }
-}*/
+}
 
 function nextStage() {
   /*let dot = document.querySelector(".item_dot");*/
