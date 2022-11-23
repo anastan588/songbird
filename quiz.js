@@ -995,7 +995,7 @@ function showRight() {
 
     if (
       buttonNextText.innerHTML === "Finish" ||
-      buttonNextText.innerHTML === "Конец игры"
+      buttonNextText.innerHTML === "Финиш"
     ) {
       buttonNext.addEventListener("click", end);
     } else {
@@ -1024,7 +1024,7 @@ function nextStage() {
   birdName.innerHTML = "* * * * * *";
   if (stage === 5) {
     buttonNextText.innerHTML = "Finish";
-    if (localStorage.getItem("birdsLang") === "RU") {
+    if (localStorage.getItem("birdsLang") === "RUS") {
       buttonNextText.innerHTML = "Финиш";
     }
   }
